@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ประยูรรวมช่าง | Catalog สินค้า</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+  <link rel="icon" href="logo.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.jpg" alt="PRY Logo" class="logo">
+    <div class="header-title">
+      <h1>ประยูรรวมช่าง</h1>
+      <p>ระบบดูรายการสินค้า</p>
+    </div>
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="search" placeholder="ค้นหาชื่อ, รหัส, ยี่ห้อ, รุ่น...">
+    </div>
+    <div class="header-actions">
+      <span id="user-badge" class="user-badge" style="display:none;"></span>
+      <button id="login-btn" class="btn btn-primary">เข้าสู่ระบบ</button>
+      <button id="logout-btn" class="btn btn-outline" style="display:none;">ออกจากระบบ</button>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar">
+      <h3>หมวดสินค้า</h3>
+      <input type="text" id="cat-search" class="cat-search" placeholder="ค้นหาหมวด...">
+      <div id="cat-list" class="cat-list"></div>
+    </aside>
+    <main class="main">
+      <div class="toolbar">
+        <div id="result-info" class="result-info">กำลังโหลด...</div>
+      </div>
+      <div class="advanced-filters">
+        <select id="brand-filter"><option value="">ทุกยี่ห้อ</option></select>
+      </div>
+      <div id="product-grid" class="product-grid"></div>
+      <div id="pagination" class="pagination"></div>
+      <div id="import-section" class="import-section">
+        <h4>นำเข้าข้อมูลจาก Excel / CSV (Admin)</h4>
+        <p style="font-size:0.8rem;color:#666;margin-bottom:0.5rem;">อัปโหลดไฟล์ .xlsx หรือ .csv ที่มีคอลัมน์ตามรูปแบบเดิม (รหัสสินค้า, ชื่อสินค้า, ยี่ห้อสินค้า, รุ่นแบบ, หมวดสินค้า, ราคา A-D, ราคาปลีก) เพื่ออัปเดตทั้งระบบ</p>
+        <button id="import-btn" class="btn btn-outline">เลือกไฟล์</button>
+        <input type="file" id="file-input" accept=".xlsx,.xls,.csv" style="display:none;">
+      </div>
+    </main>
+  </div>
+  <div id="login-modal" class="modal-overlay">
+    <div class="modal">
+      <h2>เข้าสู่ระบบ</h2>
+      <div id="login-error" class="error-msg">รหัสไม่ถูกต้อง</div>
+      <label>ID</label>
+      <input type="text" id="login-id" placeholder="Admin หรือ Sale001" autocomplete="username">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="รหัสผ่าน" autocomplete="current-password">
+      <button id="login-submit" class="btn btn-primary">เข้าสู่ระบบ</button>
+      <button id="login-cancel" class="btn btn-outline" style="margin-top:0.5rem;">ยกเลิก</button>
+      <div class="login-note">
+        ระดับ Admin: ดูราคา A/B/C/D + ปลีก + นำเข้าข้อมูล<br>
+        ระดับ Sale: ดูราคา A/B/C/D + ปลีก<br>
+        ห้ามแสดงราคาทุนเด็ดขาด
+      </div>
+    </div>
+  </div>
+  <script src="xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
